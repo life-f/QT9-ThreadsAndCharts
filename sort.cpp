@@ -1,14 +1,23 @@
+/**
+  * @file sort.cpp
+  * @brief bubble sort
+  * @author Bagrova Polina
+  */
 #include "sort.h"
 #include <QRandomGenerator>
-//#include <QDebug>
 
 Sort::Sort(int qty, QObject *parent) : QObject(parent)
 {
     n = qty;
-    array = new int(n);
+    array = new int[n];
     QRandomGenerator random;
     for(int i=0; i<n; i++)
-        array[i] = random.bounded(1,1000);
+        array[i] = random.bounded(1,1000000);
+}
+
+Sort::~Sort()
+{
+    delete array;
 }
 
 bool Sort::running() const
@@ -29,7 +38,7 @@ void Sort::run()
     while (m_running){
         int buf;
         for (int i=0; i<n-1; i++){
-            for (int j=0; j<n-i-1;j++){
+            for (int j=0; j<n;j++){
                 if (array[j]>array[j+1]){
                     buf=array[j];
                     array[j]=array[j+1];
@@ -39,11 +48,17 @@ void Sort::run()
                     return;
             }
         }
+        setRunning(false);
     }
     emit finished();
 }
 
-//int *Sort::getArray() const
-//{
-//    return array;
-//}
+int *Sort::getArray() const
+{
+    return array;
+}
+
+int Sort::getN() const
+{
+    return n;
+}

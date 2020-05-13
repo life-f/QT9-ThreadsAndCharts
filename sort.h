@@ -1,3 +1,8 @@
+/**
+  * @file sort.h
+  * @brief bubble sort
+  * @author Bagrova Polina
+  */
 #ifndef SORT_H
 #define SORT_H
 
@@ -15,15 +20,17 @@ private:
 
 public:
     explicit Sort(int qty, QObject *parent = nullptr);
+    ~Sort();
     bool running() const;
-//    int *getArray() const;
+    int *getArray() const;
+    int getN() const;
 
 public slots:
     void setRunning(bool running);
     void run();
 
 signals:
-    void finished();    // Сигнал, по которому будем завершать поток, после завершения метода run
+    void finished();
     void runningChanged(bool running);
 };
 
