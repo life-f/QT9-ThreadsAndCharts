@@ -19,18 +19,52 @@ private:
     int n;
 
 public:
+    /**
+     * @brief constructor sort
+     * @param qty - quantity of elements
+     * @param parent
+     */
     explicit Sort(int qty, QObject *parent = nullptr);
+    /**
+     * @brief destructor sort
+     */
     ~Sort();
+    /**
+     * @brief running
+     * @return m_running
+     */
     bool running() const;
+    /**
+     * @brief get Array
+     * @return array
+     */
     int *getArray() const;
+    /**
+     * @brief get N
+     * @return n
+     */
     int getN() const;
 
 public slots:
+    /**
+     * @brief set m_running
+     * @param running
+     */
     void setRunning(bool running);
+    /**
+     * @brief run
+     */
     void run();
 
 signals:
+    /**
+     * @brief finished
+     */
     void finished();
+    /**
+     * @brief running changed
+     * @param running
+     */
     void runningChanged(bool running);
 };
 
